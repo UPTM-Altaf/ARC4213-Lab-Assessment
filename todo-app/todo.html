@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="todo-card">
+            <div class="todo-header">
+                <div class="header-left">
+                    <h2 id="todo-date">Wed Jun 17 2026</h2>
+                    <span id="task-count" class="task-count">5 tasks</span>
+                </div>
+                <div class="todo-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Active</button>
+                    <button class="filter-btn">Completed</button>
+                </div>
+            </div>
+
+            <div class="todo-input-container">
+                <input type="text" id="todo-input" placeholder="Add a new task...">
+            </div>
+
+            <ul class="todo-list" id="todo-list">
+                <li class="todo-item completed">
+                    <div class="check-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <span class="task-text">Drink 8 glasses of water</span>
+                </li>
+                
+                <li class="todo-item completed">
+                    <div class="check-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <span class="task-text">Backup project files</span>
+                </li>
+                
+                <li class="todo-item">
+                    <div class="check-icon-empty"></div>
+                    <span class="task-text">Buy groceries for the week</span>
+                </li>
+                
+                <li class="todo-item">
+                    <div class="check-icon-empty"></div>
+                    <span class="task-text">30-minute evening run</span>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>
