@@ -1,0 +1,17 @@
+{
+    "profile": {
+        "name": "username",
+        "title": "",
+        "tagline": "",
+        "bio": "",
+        "email": "user@gmail.com",
+        "phone": "",
+        "location": "",
+        "github": "",
+        "linkedin": "",
+        "photo": ""
+    },
+    "skills": [],
+    "soft_skills": [],
+    "education": []
+}
