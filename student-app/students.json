@@ -1,0 +1,50 @@
+[
+    {
+        "id": "UPTM2301",
+        "name": "Hana Humaira",
+        "programme": "Diploma in Cyber security",
+        "semester": "5",
+        "email": "hana@student.com",
+        "status": "active"
+    },
+    {
+        "id": "UPTM2302",
+        "name": "Lim Wei",
+        "programme": "Diploma in Computer Science",
+        "semester": "5",
+        "email": "limwei@student.com",
+        "status": "active"
+    },
+    {
+        "id": "UPTM1350",
+        "name": "Arvind Kumar",
+        "programme": "Bachelor of Information Technology in Cyber Security",
+        "semester": "8",
+        "email": "arvind@student.com",
+        "status": "inactive"
+    },
+    {
+        "id": "UPTM1859",
+        "name": "Jimmy Michael",
+        "programme": "Bachelor of Accountancy",
+        "semester": "4",
+        "email": "jimmy@student.com",
+        "status": "active"
+    },
+    {
+        "id": "UPTM1876",
+        "name": "Rani Devi",
+        "programme": "Bachelor of Business Administration",
+        "semester": "2",
+        "email": "rani@student.com",
+        "status": "inactive"
+    },
+    {
+        "id": "UPTM2844",
+        "name": "Anis Amira",
+        "programme": "Diploma in Business Studies",
+        "semester": "3",
+        "email": "anis@student.com",
+        "status": "active"
+    }
+]

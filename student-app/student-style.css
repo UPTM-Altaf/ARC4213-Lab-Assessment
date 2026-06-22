@@ -1,0 +1,46 @@
+:root{
+  --bs-body-font-family:'IBM Plex Sans', sans-serif;
+  --primary-dark:#A0522D;
+  --accent:#B8860B;
+  --tint:#F3E4D3;
+  --ink-soft:#6B5C4D;
+  --orange:#D2691E;
+  --orange-dark:#A0522D;
+}
+body{background:#FAF3E8;}
+.top-bar{height:5px;background:linear-gradient(90deg, var(--orange) 0%, var(--accent) 100%);}
+.brand-eyebrow{font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);}
+.app-title{font-family:'Source Serif 4', serif;font-weight:700;font-size:32px;color:var(--primary-dark);letter-spacing:-0.01em;}
+.count-pill{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);background:var(--tint);padding:6px 10px;border-radius:999px;white-space:nowrap;}
+
+.btn-primary{
+  --bs-btn-bg: var(--orange);
+  --bs-btn-border-color: var(--orange);
+  --bs-btn-hover-bg: var(--orange-dark);
+  --bs-btn-hover-border-color: var(--orange-dark);
+  --bs-btn-active-bg: var(--orange-dark);
+  --bs-btn-active-border-color: var(--orange-dark);
+  --bs-btn-focus-shadow-rgb: 210,105,30;
+}
+
+.stat-card{border-left-color:var(--orange) !important;background:#fff;}
+.stat-card.accent-success{border-left-color:#1B7A43 !important;}
+.stat-card.accent-danger{border-left-color:#B3261E !important;}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:600;margin-bottom:6px;}
+.stat-value{font-family:'Source Serif 4', serif;font-size:28px;font-weight:700;color:var(--primary-dark);}
+.stat-card.accent-success .stat-value{color:#1B7A43;}
+.stat-card.accent-danger .stat-value{color:#B3261E;}
+
+.sid{font-family:'IBM Plex Mono', monospace;font-weight:600;font-size:13px;background:var(--tint);color:var(--primary-dark);padding:4px 8px;border-radius:6px;}
+.row-name{display:flex;align-items:center;gap:10px;}
+.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:13px;font-family:'IBM Plex Mono', monospace;flex-shrink:0;}
+
+.empty h3{font-family:'Source Serif 4', serif;color:var(--primary-dark);font-size:18px;}
+.card{background:#fff;}
+thead th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:#FFFBF5;}
+tbody tr{animation:rise .25s ease both;}
+@keyframes rise{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition:none !important;}
+}
