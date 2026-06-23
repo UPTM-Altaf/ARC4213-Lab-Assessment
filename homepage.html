@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Application Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+
+            --accent-student: #0d6efd;
+            --accent-profile: #4f46e5;
+            --accent-todo: #0ea5e9;
+
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:var(--bg-color);
+            color:var(--text-main);
+            font-family:var(--font-body);
+            padding:3rem 1.5rem;
+        }
+
+        .hub-container{
+            max-width:1140px;
+            margin:auto;
+        }
+
+        .hub-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-end;
+            flex-wrap:wrap;
+            gap:1rem;
+            margin-bottom:3rem;
+            border-bottom:1px solid #ddd;
+            padding-bottom:2rem;
+        }
+
+        .hub-eyebrow{
+            font-family:var(--font-mono);
+            font-size:.8rem;
+            color:var(--text-muted);
+        }
+
+        h1{
+            font-family:var(--font-heading);
+            font-size:2.5rem;
+        }
+
+        .hub-subtitle{
+            margin-top:.7rem;
+            color:var(--text-muted);
+        }
+
+        .system-time{
+            background:#e2e8f0;
+            padding:10px 20px;
+            border-radius:8px;
+            font-family:var(--font-mono);
+        }
+
+        .hub-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:2rem;
+        }
+
+        .hub-card{
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 4px 10px rgba(0,0,0,.08);
+            display:flex;
+            flex-direction:column;
+        }
+
+        .card-content{
+            padding:2rem;
+        }
+
+        .border-student{
+            border-top:5px solid var(--accent-student);
+        }
+
+        .border-profile{
+            border-top:5px solid var(--accent-profile);
+        }
+
+        .border-todo{
+            border-top:5px solid var(--accent-todo);
+        }
+
+        .card-icon{
+            font-size:2rem;
+            opacity:.2;
+            float:right;
+        }
+
+        .module-tag{
+            font-size:.75rem;
+            background:#f1f5f9;
+            padding:5px 10px;
+            border-radius:5px;
+        }
+
+        .card-content h2{
+            margin-top:20px;
+            margin-bottom:10px;
+        }
+
+        .card-content p{
+            color:var(--text-muted);
+            margin-bottom:20px;
+        }
+
+        .card-meta{
+            font-size:.8rem;
+            color:var(--text-muted);
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+
+        .launch-btn{
+            text-decoration:none;
+            text-align:center;
+            padding:1rem;
+            font-weight:600;
+            background:#fafafa;
+            margin-top:auto; /* Keeps all bottom links locked to the card grid base line */
+            border-top:1px solid #f1f5f9; 
+        }
+
+        .btn-student{
+            color:var(--accent-student);
+        }
+
+        .btn-profile{
+            color:var(--accent-profile);
+        }
+
+        .btn-todo{
+            color:var(--accent-todo);
+        }
+
+        .hub-footer{
+            text-align:center;
+            margin-top:3rem;
+            color:var(--text-muted);
+            border-top:1px solid #ddd;
+            padding-top:1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hub-container">
+
+    <header class="hub-header">
+        <div>
+            <span class="hub-eyebrow">ARC4213 CLOUD COMPUTING</span>
+            <h1>Student Application Hub</h1>
+            <p class="hub-subtitle">
+                Cloud-based web application containing three modules developed and deployed using Vercel.
+            </p>
+        </div>
+
+        <div class="system-time">
+            <i class="fa-regular fa-clock"></i>
+            <span id="current-time"></span>
+        </div>
+    </header>
+
+
+    <main class="hub-grid">
+
+        <div class="hub-card border-student">
+            <div class="card-content">
+                <div class="card-icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <span class="module-tag">Student Management</span>
+                <h2>Student Management Mini App</h2>
+                <p>
+                    Manage student information including student ID, name, course, and contact details.
+                </p>
+                <div class="card-meta">
+                    <span><i class="fa-brands fa-html5"></i> HTML/CSS</span>
+                    <span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+                    <span><i class="fa-brands fa-js"></i> JS</span>
+                    <span><i class="fa-brands fa-php"></i> PHP</span>
+                </div>
+            </div>
+            <a href="student-app/student.html" class="launch-btn btn-student">
+                Open Student Management
+            </a>
+        </div>
+
+
+        <div class="hub-card border-profile">
+            <div class="card-content">
+                <div class="card-icon">
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
+                <span class="module-tag">Resume/Profile</span>
+                <h2>Personal Resume & Profile</h2>
+                <p>
+                    Display personal information, educational background, skills, and contact information.
+                </p>
+                <div class="card-meta">
+                    <span><i class="fa-brands fa-html5"></i> HTML/CSS</span>
+                    <span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+                    <span><i class="fa-brands fa-js"></i> JS</span>
+                    <span><i class="fa-brands fa-php"></i> PHP</span>
+                </div>
+            </div>
+            <a href="resume-profile-page/index.php" class="launch-btn btn-profile">
+                View Profile
+            </a>
+        </div>
+
+
+        <div class="hub-card border-todo">
+            <div class="card-content">
+                <div class="card-icon">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <span class="module-tag">To-Do App</span>
+                <h2>Task Management System</h2>
+                <p>
+                    Manage daily activities through task creation, completion, and deletion functions.
+                </p>
+                <div class="card-meta">
+                    <span><i class="fa-brands fa-html5"></i> HTML/CSS</span>
+                    <span><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+                    <span><i class="fa-brands fa-js"></i> JS</span>
+                </div>
+            </div>
+            <a href="todo-app/index.html" class="launch-btn btn-todo">
+                Open To-Do App
+            </a>
+        </div>
+
+    </main>
+
+
+</div>
+
+
+<script>
+function updateClock() {
+    const now = new Date();
+    document.getElementById("current-time").innerHTML =
+        now.toLocaleDateString() + " | " +
+        now.toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+</script>
+
+</body>
+</html>
