@@ -1,5 +1,6 @@
 (function(){
-  const API_URL = 'students.php';
+  // Using LocalStorage instead of PHP
+  const STORAGE_KEY = 'netlify_student_records';
   const AVATAR_COLORS = ['#0F5257', '#8B5E34', '#4A5577', '#6E7F4F', '#9C5B5B'];
   let students = [];
   let editingId = null;
@@ -23,25 +24,100 @@
   const liveToast = new bootstrap.Toast(liveToastEl, {delay:2200});
   const toastMsg = document.getElementById('toastMsg');
 
-  async function fetchStudents(){
-    try{
-      const res = await fetch(API_URL);
-      const json = await res.json();
-      students = json.data || [];
-      render();
-    }catch(err){
-      showToast('Could not reach the server. Is Apache running?');
+  // --- LOCALSTORAGE DATA MANAGEMENT ---
+  
+  // Replaces PHP loadStudents() and seed data logic
+  function loadLocalStudents() {
+    const localData = localStorage.getItem(STORAGE_KEY);
+    if (!localData) {
+      // Your identical PHP seed data
+      const seed = [
+        {id: 'UPTM2301', name: 'Hana Humaira', programme: 'Diploma in Cybersecurity', semester: '5', email: 'hana@student.com', status: 'active'},
+        {id: 'UPTM2302', name: 'Lim Wei', programme: 'Diploma in Cybersecurity', semester: '5', email: 'limwei@student.com', status: 'active'},
+        {id: 'UPTM1350', name: 'Arvind Kumar', programme: 'Bachelor of Information Technology in Cyber Security', semester: '8', email: 'arvind@student.com', status: 'inactive'}
+      ];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
+      return seed;
+    }
+    try {
+      return JSON.parse(localData);
+    } catch(e) {
+      return [];
     }
   }
 
-  async function apiCall(payload){
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
-    });
-    return res.json();
+  // Replaces PHP saveStudents()
+  function saveLocalStudents(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
+
+  // Initializing local dataset instead of using async fetch()
+  function initializeApp(){
+    students = loadLocalStudents();
+    render();
+  }
+
+  // Simulated local API Engine mimicking your exact PHP endpoints
+  function processLocalAction(payload) {
+    const action = payload.action;
+    
+    if (action === 'add') {
+      const sid = payload.id.trim();
+      const name = payload.name.trim();
+      const programme = payload.programme.trim();
+
+      if (sid === '' || name === '' || programme === '') {
+        return {success: false, message: 'Student ID, name, and programme are required.'};
+      }
+      
+      // Duplication verification (Case Insensitive - strcasecmp equivalent)
+      const exists = students.some(s => s.id.toLowerCase() === sid.toLowerCase());
+      if (exists) {
+        return {success: false, message: 'This Student ID already exists.'};
+      }
+
+      students.push({
+        id: sid,
+        name: name,
+        programme: programme,
+        semester: payload.semester.trim(),
+        email: payload.email.trim(),
+        status: payload.status === 'inactive' ? 'inactive' : 'active'
+      });
+      
+      saveLocalStudents(students);
+      return {success: true, data: students};
+    }
+
+    if (action === 'edit') {
+      const sid = payload.id.trim();
+      const index = students.findIndex(s => s.id === sid);
+      
+      if (index === -1) {
+        return {success: false, message: 'Student not found.'};
+      }
+
+      students[index].name = payload.name.trim();
+      students[index].programme = payload.programme.trim();
+      students[index].semester = payload.semester.trim();
+      students[index].email = payload.email.trim();
+      students[index].status = payload.status === 'inactive' ? 'inactive' : 'active';
+
+      saveLocalStudents(students);
+      return {success: true, data: students};
+    }
+
+    if (action === 'delete') {
+      const sid = payload.id.trim();
+      students = students.filter(s => s.id !== sid);
+      saveLocalStudents(students);
+      return {success: true, data: students};
+    }
+
+    return {success: false, message: 'Unknown action.'};
+  }
+
+  // --- UI INTERFACES & RENDERING ---
 
   function showToast(msg){
     toastMsg.textContent = msg;
@@ -52,6 +128,7 @@
     const code = name.trim().charCodeAt(0) || 0;
     return AVATAR_COLORS[code % AVATAR_COLORS.length];
   }
+
   function initials(name){
     const parts = name.trim().split(/\s+/);
     const first = parts[0] ? parts[0][0] : '';
@@ -147,6 +224,7 @@
     }
     studentModal.show();
   }
+  
   function clearErrors(){
     form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
   }
@@ -164,7 +242,8 @@
     return valid;
   }
 
-  form.addEventListener('submit', async function(e){
+  // --- SUBMISSION EVENT HANDLER ---
+  form.addEventListener('submit', function(e){
     e.preventDefault();
     const data = {
       id: form.sid.value,
@@ -177,7 +256,9 @@
     if(!validateClientSide(data)) return;
 
     const action = editingId ? 'edit' : 'add';
-    const result = await apiCall({action, ...data});
+    
+    // Call our simulated Local engine instead of HTTP Fetch
+    const result = processLocalAction({action, ...data});
 
     if(!result.success){
       if(result.message && result.message.includes('already exists')){
@@ -195,7 +276,6 @@
     render();
   });
 
-  // Explicit Add-button handlers — always reset the modal to "Add" state
   document.getElementById('openAddBtn').addEventListener('click', () => openModal(null));
   document.getElementById('emptyAddBtn').addEventListener('click', () => openModal(null));
 
@@ -205,7 +285,7 @@
     form.reset();
   });
 
-  tableBody.addEventListener('click', async function(e){
+  tableBody.addEventListener('click', function(e){
     const btn = e.target.closest('button[data-action]');
     if(!btn) return;
     const id = btn.dataset.id;
@@ -214,7 +294,7 @@
       openModal(student);
     } else if(btn.dataset.action === 'delete'){
       if(confirm(`Delete record for ${student.name}? This cannot be undone.`)){
-        const result = await apiCall({action: 'delete', id});
+        const result = processLocalAction({action: 'delete', id});
         students = result.data || students;
         render();
         showToast('Student deleted.');
@@ -231,5 +311,6 @@
     render();
   });
 
-  fetchStudents();
+  // Run the application init
+  initializeApp();
 })();
