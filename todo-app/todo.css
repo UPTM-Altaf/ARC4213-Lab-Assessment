@@ -1,4 +1,3 @@
-/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +10,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Soft pastel gradient background matching your image */
     background: linear-gradient(135deg, #d3c4ff 0%, #dcedff 50%, #b8f2e6 100%);
     padding: 20px;
 }
@@ -135,4 +133,28 @@ body {
 
 .todo-item:hover .check-icon-empty {
     border-color: #999999;
+}
+
+.todo-delete-btn {
+    background: none;
+    border: none;
+    color: #ff4d4f;
+    cursor: pointer;
+    font-size: 0.95rem;
+    opacity: 0; 
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-item:hover .todo-delete-btn {
+    opacity: 1;
+}
+
+.todo-delete-btn:hover {
+    background-color: #fff1f0; /* Soft highlight color */
+    color: #ff2123;
 }
