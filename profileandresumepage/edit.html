@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  (function(){var t=localStorage.getItem('resumeTheme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+</script>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="prompt">USER RESUME
+    <nav class="filetree">
+      <a href="index.html" class="file"><span class="ext"></span>view profile</a>
+      <a href="edit.html"  class="file active"><span class="ext"></span>edit</a>
+    </nav>
+
+    <div class="theme-switcher">
+      <span class="theme-switcher-label">Theme</span>
+      <div class="theme-swatches">
+        <button class="theme-swatch active" data-theme="default" title="Default"></button>
+        <button class="theme-swatch" data-theme="dark"    title="Dark"></button>
+        <button class="theme-swatch" data-theme="ocean"   title="Ocean"></button>
+        <button class="theme-swatch" data-theme="forest"  title="Forest"></button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section class="panel in-view edit-page">
+      <p class="eyebrow">edit</p>
+      <h2>Edit your profile</h2>
+
+      <div id="save-alert" class="alert hidden"></div>
+
+      <!-- ===== Photo ===== -->
+      <h3 class="form-section-title" style="margin-top:0;padding-top:0;border-top:none;">Profile Photo</h3>
+
+      <div class="photo-edit-row">
+        <div class="photo-preview-wrap">
+          <svg id="edit-photo-placeholder" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="60" fill="#E7ECF1"/>
+            <circle cx="60" cy="48" r="22" fill="#B9C3CE"/>
+            <path d="M18 112c4-26 26-40 42-40s38 14 42 40" fill="#B9C3CE"/>
+          </svg>
+          <img id="edit-photo-preview" class="profile-photo hidden" alt="Current photo">
+        </div>
+        <div class="photo-actions">
+          <label class="btn-secondary" for="photo-upload-input" style="cursor:pointer;">
+            📷 Choose photo
+          </label>
+          <input type="file" id="photo-upload-input" accept="image/jpeg,image/png,image/webp,image/gif" class="hidden">
+          <button id="remove-photo-btn" class="remove-row-btn hidden">✕ Remove photo</button>
+          <p class="form-hint" style="margin-top:8px;">JPG, PNG, or WebP. Max 5 MB. Stored in your browser.</p>
+        </div>
+      </div>
+
+      <!-- ===== Personal Info ===== -->
+      <h3 class="form-section-title">Personal Information</h3>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="edit-name">Full Name</label>
+          <input type="text" id="edit-name" placeholder="Your full name">
+        </div>
+        <div class="form-field">
+          <label for="edit-title">Title / Role</label>
+          <input type="text" id="edit-title" placeholder="e.g. Bachelor of IT (Hons) Student">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="edit-tagline">Tagline</label>
+        <input type="text" id="edit-tagline" placeholder="One short sentence about yourself">
+      </div>
+
+      <div class="form-field">
+        <label for="edit-bio">Bio</label>
+        <textarea id="edit-bio" rows="4" placeholder="A short paragraph about yourself..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="edit-email">Email</label>
+          <input type="email" id="edit-email" placeholder="you@example.com">
+        </div>
+        <div class="form-field">
+          <label for="edit-phone">Phone</label>
+          <input type="text" id="edit-phone" placeholder="+60 1X-XXX XXXX">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="edit-location">Location</label>
+          <input type="text" id="edit-location" placeholder="City, Country">
+        </div>
+        <div class="form-field">
+          <label for="edit-github">GitHub URL</label>
+          <input type="text" id="edit-github" placeholder="https://github.com/...">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="edit-linkedin">LinkedIn URL</label>
+        <input type="text" id="edit-linkedin" placeholder="https://linkedin.com/in/...">
+      </div>
+
+      <!-- ===== Skills ===== -->
+      <h3 class="form-section-title">Skills</h3>
+      <p class="form-hint">Category groups skills together on your profile (e.g. "Languages", "Tools"). Proficiency is 0 – 100.</p>
+
+      <div id="skills-rows"></div>
+      <button id="add-skill-btn" class="btn-secondary">+ Add skill</button>
+
+      <div class="form-field" style="margin-top:20px;">
+        <label for="edit-soft-skills">Core strengths (comma-separated)</label>
+        <input type="text" id="edit-soft-skills" placeholder="Teamwork, Problem Solving, Time Management">
+      </div>
+
+      <!-- ===== Education ===== -->
+      <h3 class="form-section-title">Education</h3>
+
+      <div id="education-rows"></div>
+      <button id="add-education-btn" class="btn-secondary">+ Add education entry</button>
+
+      <!-- ===== Actions ===== -->
+      <div class="form-actions">
+        <button id="save-btn" class="btn">Save changes</button>
+        <a href="index.html" class="btn-cancel">Cancel</a>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<script src="assets/edit.js"></script>
+</body>
+</html>

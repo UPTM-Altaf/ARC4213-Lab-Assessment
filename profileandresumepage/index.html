@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  // Apply saved theme immediately to avoid flash of wrong theme on load
+  (function(){var t=localStorage.getItem('resumeTheme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+</script>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="prompt">USER RESUME
+    <nav class="filetree">
+      <a href="#profile" class="file active" data-target="profile"><span class="ext"></span>profile</a>
+      <a href="#skills"  class="file" data-target="skills"><span class="ext"></span>skills</a>
+      <a href="#education" class="file" data-target="education"><span class="ext"></span>education</a>
+      <a href="#contact" class="file" data-target="contact"><span class="ext"></span>contact</a>
+    </nav>
+    <a href="edit.html" class="edit-link">✎ Edit Profile</a>
+
+    <div class="theme-switcher">
+      <span class="theme-switcher-label">Theme</span>
+      <div class="theme-swatches">
+        <button class="theme-swatch active" data-theme="default" title="Default"></button>
+        <button class="theme-swatch" data-theme="dark"    title="Dark"></button>
+        <button class="theme-swatch" data-theme="ocean"   title="Ocean"></button>
+        <button class="theme-swatch" data-theme="forest"  title="Forest"></button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- ============ PROFILE ============ -->
+    <section id="profile" class="panel hero">
+      <div class="terminal-frame">
+        <div class="terminal-bar">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <div class="terminal-photo">
+          <!-- JS will put either an <img> or the placeholder SVG here -->
+          <svg id="photo-placeholder" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="60" fill="#E7ECF1"/>
+            <circle cx="60" cy="48" r="22" fill="#B9C3CE"/>
+            <path d="M18 112c4-26 26-40 42-40s38 14 42 40" fill="#B9C3CE"/>
+          </svg>
+          <img id="profile-photo-img" class="profile-photo hidden" alt="Profile photo">
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <p class="eyebrow">profile</p>
+        <h1 id="hero-name">Your Name</h1>
+        <p class="role" id="hero-title"></p>
+        <p class="tagline" id="hero-tagline"></p>
+        <p class="bio" id="hero-bio"></p>
+        <ul class="quick-contact">
+          <li id="contact-location"> </li>
+          <li>✉️ <a id="contact-email" href="#"></a></li>
+          <li id="contact-phone"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="panel">
+      <p class="eyebrow">skills</p>
+      <h2>What I work with</h2>
+      <div id="skills-display"></div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="panel">
+      <p class="eyebrow">education</p>
+      <h2>Education timeline</h2>
+      <div class="timeline" id="education-display"></div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="panel">
+      <p class="eyebrow">contact</p>
+      <h2>Get in touch</h2>
+      <div id="contact-alert" class="alert hidden"></div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="msg-name">Name</label>
+            <input type="text" id="msg-name" placeholder="Your name">
+          </div>
+          <div class="form-field">
+            <label for="msg-email">Email</label>
+            <input type="email" id="msg-email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="msg-subject">Subject</label>
+          <input type="text" id="msg-subject" placeholder="What is this about?">
+        </div>
+        <div class="form-field">
+          <label for="msg-message">Message</label>
+          <textarea id="msg-message" rows="5" placeholder="Your message..."></textarea>
+        </div>
+        <button class="btn" id="contact-send-btn">Send message</button>
+      </div>
+    </section>
+
+    <footer class="page-footer"></footer>
+
+  </main>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
