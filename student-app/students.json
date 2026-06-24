@@ -22,29 +22,5 @@
         "semester": "8",
         "email": "arvind@student.com",
         "status": "inactive"
-    },
-    {
-        "id": "UPTM1859",
-        "name": "Jimmy Michael",
-        "programme": "Bachelor of Accountancy",
-        "semester": "4",
-        "email": "jimmy@student.com",
-        "status": "active"
-    },
-    {
-        "id": "UPTM1876",
-        "name": "Rani Devi",
-        "programme": "Bachelor of Business Administration",
-        "semester": "2",
-        "email": "rani@student.com",
-        "status": "inactive"
-    },
-    {
-        "id": "UPTM2844",
-        "name": "Anis Amira",
-        "programme": "Diploma in Business Studies",
-        "semester": "3",
-        "email": "anis@student.com",
-        "status": "active"
     }
 ]
